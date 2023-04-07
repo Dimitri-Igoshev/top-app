@@ -1,0 +1,15 @@
+.block {
+    display: flex;
+}
+
+.star svg {
+    margin-right: .5rem;
+}
+
+.filled svg {
+    fill: var(--primary);
+}
+
+.editable {
+    cursor: pointer;
+}
