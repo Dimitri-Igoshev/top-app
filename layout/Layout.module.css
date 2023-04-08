@@ -1,0 +1,45 @@
+.wrapper {
+    min-height: 100vh;
+    display: grid;
+    gap: 0 3rem;
+    grid-template:
+    ". header header ." auto
+    ". sidebar body ." 1fr
+    "footer footer footer footer" auto
+    /auto 23rem minmax(32rem, 120rem) auto
+}
+
+.header {
+    grid-area: header;
+    display: none;
+}
+
+.body {
+    grid-area: body;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+@media (max-width: 765px) {
+    .wrapper {
+        grid-template:
+        "header" auto
+        "body" 1fr
+        "footer" auto
+        / minmax(32rem, 1fr);
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .header {
+        display: grid;
+    }
+}
