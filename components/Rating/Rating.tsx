@@ -1,28 +1,26 @@
-import { RatingProps } from '@/components/Rating/Rating.props';
-import styles from './Rating.module.css';
-import cn from 'classnames';
-import { useEffect, useState } from 'react';
-import StarIcon from './star.svg';
-import { spans } from 'next/dist/build/webpack/plugins/profiling-plugin'
-
+import { RatingProps } from '@/components/Rating/Rating.props'
+import styles from './Rating.module.css'
+import cn from 'classnames'
+import { useEffect, useState } from 'react'
+import StarIcon from './star.svg'
 
 export const Rating = ({ isEditable = false, rating, setRating, ...props }: RatingProps) => {
-	const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
-
-	useEffect(() => {
-		constructRating(rating);
-	}, [rating]);
-
+	const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
 
 	const changeDisplay = (i: number) => {
-		if (!isEditable) return;
-		constructRating(i);
-	};
+		if (!isEditable) return
+		constructRating(i)
+	}
+
+
+	useEffect(() => {
+		constructRating(rating)
+	}, [rating])
 
 	const onClick = (i: number) => {
-		if (!isEditable || !setRating) return;
-		setRating(i);
-	};
+		if (!isEditable || !setRating) return
+		setRating(i)
+	}
 
 	const constructRating = (currentRating: number) => {
 		const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
@@ -37,14 +35,14 @@ export const Rating = ({ isEditable = false, rating, setRating, ...props }: Rati
 					onClick={() => onClick(i + 1)}
 				>
 					<StarIcon
-					  tabIndex={isEditable ? 0 : -1}
-					  onKeyDown={(e) => e.code === 'Space' && onClick(i + 1)}
+						tabIndex={isEditable ? 0 : -1}
+						onKeyDown={(e) => e.code === 'Space' && onClick(i + 1)}
 					/>
 				</span>
-			);
-		});
-		setRatingArray(updatedArray);
-	};
+			)
+		})
+		setRatingArray(updatedArray)
+	}
 
 	return (
 		<div className={styles.block} {...props}>
@@ -52,5 +50,5 @@ export const Rating = ({ isEditable = false, rating, setRating, ...props }: Rati
 				<span key={i}>{r}</span>
 			))}
 		</div>
-	);
-};
+	)
+}
